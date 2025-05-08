@@ -1,0 +1,6 @@
+opencv-python
+matplotlib
+scikit-learn
+ultralytics
+streamlit
+streamlit-webrtc

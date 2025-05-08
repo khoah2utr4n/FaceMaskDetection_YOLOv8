@@ -1,0 +1,11 @@
+archive.zip
+data.yaml
+datasets/*/
+runs
+saved_images
+yolov8n.pt
+captured_image.jpg
+__pycache__/
+camera
+run.py
+uploaded-weights
