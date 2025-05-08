@@ -1,7 +1,7 @@
 import os
 import xml.etree.ElementTree as ET 
 import config
-from utils import move_file, xml2YoloBox
+from utils import moveFile, xml2YoloBox
 from sklearn.model_selection import train_test_split 
 
 
@@ -74,11 +74,11 @@ if __name__ == '__main__':
                                  random_state=random_state, shuffle=True)
 
     # Move image and label files to corresponding train/val/test directories
-    move_file(train, config.IMAGES_DIR, f'{config.IMAGES_DIR}/train/', 
+    moveFile(train, config.IMAGES_DIR, f'{config.IMAGES_DIR}/train/', 
               config.LABELS_DIR, f'{config.LABELS_DIR}/train/')
-    move_file(val, config.IMAGES_DIR, f'{config.IMAGES_DIR}/val/', 
+    moveFile(val, config.IMAGES_DIR, f'{config.IMAGES_DIR}/val/', 
               config.LABELS_DIR, f'{config.LABELS_DIR}/val/')
-    move_file(test, config.IMAGES_DIR, f'{config.IMAGES_DIR}/test/', 
+    moveFile(test, config.IMAGES_DIR, f'{config.IMAGES_DIR}/test/', 
               config.LABELS_DIR, f'{config.LABELS_DIR}/test/')
     
     # Create a dataset config file
