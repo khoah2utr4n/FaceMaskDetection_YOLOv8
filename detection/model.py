@@ -9,15 +9,15 @@ def trainModel(model, numEpochs, resume=False):
     return results
 
 
-def getPrediction(model, imagePath):
+def getPrediction(model, source):
     """Return a prediction of parsing model for parsing image
         Args:
             model (torch.nn.Module): Model used for prediction
-            imagePath (Path): Path to the image to be predicted 
+            source (Path, PIL, np.ndarray): Path to the image or image to be predicted 
         Return:
             prediction (list): Prediction for parsing image
     """
-    results = model.predict(source=imagePath, conf=0.7, verbose=False)
+    results = model.predict(source=source, conf=0.7, verbose=False)
     prediction = []
     for i in range(len(results[0].boxes.xywhn)):
         classIdx = results[0].boxes.cls[i].cpu().item()
