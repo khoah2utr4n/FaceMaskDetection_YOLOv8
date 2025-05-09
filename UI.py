@@ -3,8 +3,8 @@ import cv2
 import os
 import streamlit as st
 import numpy as np
-from utils import drawBoxes
-from model import getModel, getPrediction
+from detection.utils import drawBoxes
+from detection.model import getModel, getPrediction
 from PIL import Image
 from streamlit_webrtc import webrtc_streamer, VideoHTMLAttributes
 
