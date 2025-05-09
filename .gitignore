@@ -4,6 +4,7 @@ datasets/*/
 runs
 saved_images
 yolov8n.pt
+yolo11n.pt
 captured_image.jpg
 __pycache__/
 camera

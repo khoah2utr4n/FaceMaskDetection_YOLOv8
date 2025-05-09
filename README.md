@@ -29,11 +29,11 @@ This project implements a face mask detection system using a powerful [YOLOv8](h
 ### 1. Training
   * The following command loads a pre-trained YOLOv8n model and trains it for 50 epochs:
   ```
-  python train.py --epochs 50 --weights_path yolov8n.pt
+  python train.py --epochs 50 --weightsPath yolov8n.pt
   ```
   * To resume interrupted training, use:
   ```
-  python train.py --weights_path <path/to/last.pt> --resume True
+  python train.py --weightsPath <path/to/last.pt> --resume True
   ```
 When finish the training, you will get the best weights of model through training `best.pt`
 

@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import shutil
 import cv2
 import os
-import config
+from . import config
 
 
 def xml2YoloBox(bndbox, width, height):

@@ -1,7 +1,7 @@
 import os
 import xml.etree.ElementTree as ET 
-import config
-from utils import moveFile, xml2YoloBox
+from detection import config
+from detection.utils import moveFile, xml2YoloBox
 from sklearn.model_selection import train_test_split 
 
 
