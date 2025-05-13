@@ -1,5 +1,13 @@
 # Face Mask Detection with YOLOv8
-This project implements a face mask detection system using a powerful [YOLOv8](https://github.com/ultralytics/ultralytics) model from Ultralytics and the [Face Mask Detection Dataset](https://www.kaggle.com/datasets/andrewmvd/face-mask-detection) on Kaggle. It can classify faces into three categories: wear a mask, wear a mask incorrectly, and not wear a mask. In addition, a user-friendly Streamlit web interface has been created to detect mask usage in real-time webcam or uploaded images.
+This project implements a face mask detection system using [YOLOv8](https://github.com/ultralytics/ultralytics) model from Ultralytics and the [Face Mask Detection Dataset](https://www.kaggle.com/datasets/andrewmvd/face-mask-detection) on Kaggle. It can classify faces into three categories: 
+  
+  * Wearing a mask
+  
+  * Wearing a mask incorrectly
+  
+  * Not wearing a mask
+
+A user-friendly interface built with Streamlit and PyQt allows real-time detection via webcam or image uploads.
 
 ![Screenshot 2025-05-09 094821](https://github.com/user-attachments/assets/dc2a3b5f-992f-4a7c-916b-b5a12c1fc93c)
 
@@ -20,41 +28,46 @@ This project implements a face mask detection system using a powerful [YOLOv8](h
   pip install -r requirements.txt
   ```
 ### 3. Dataset
-  * Download [Face Mask Detection Dataset](https://www.kaggle.com/datasets/andrewmvd/face-mask-detection), uncompress it and put `images` folder and `annotations` folder in the `datasets` folder.
-  * Preprocess the dataset:
+  * Download the [Face Mask Detection Dataset](https://www.kaggle.com/datasets/andrewmvd/face-mask-detection).
+  * Extract it and place the `images` and `annotations` folders inside the `datasets` directory.
+  * Preprocess the data:
   ```
   python preprocessing_data.py
   ```
 
 ## Usage
 ### 1. Training
-  * Move to `detection` folder:
+  * Navigate to the `detection` directory::
   ```
   cd detection
   ```
-  * The following command loads a pre-trained YOLOv8n model and trains it for 50 epochs:
+  * To train the model using the YOLOv8n weights:
   ```
   python train.py --epochs 50 --weightsPath yolov8n.pt
   ```
-  * To resume interrupted training, use:
+  * To resume training from a checkpoint:
   ```
   python train.py --weightsPath <path/to/last.pt> --resume True
   ```
-When finish the training, you will get the best weights of model through training `best.pt`
+  After training, the best weights will be saved as `best.pt`.
 
-### 2. Detection
-  * Back to root folder
+### 2. Running Detection
+  * Return to the project root:
   ```
   cd ..
   ```
-  * Detect masks in images or real-time camera using a Streamlit UI:
+  * Option 1: Use the Streamlit Web UI
   ```
   streamlit run UI.py
   ```
-  * **Upload Model Weights**
-    * To start, please upload the weights file of the model (file `.pt`) by select the checkbox `Upload new weights`.
-    * You can use your own weights or [download pre-trained weights](https://drive.google.com/file/d/1RGusbu1Gssvq50uobJeS4hNMrwKenDid/view?usp=sharing).
+  * Option 2: Use the PyQt GUI
+  ```
+  python pyqt_ui.py
+  ```
+   * **📥 Upload Model Weights**
+     * To start, please upload your own `.pt` weights file
+     * Or use my pre-trained weights [download pre-trained weights](https://drive.google.com/file/d/1PJU0x9jH14CRtRaXwB7sP7WTnRtUN0T0/view?usp=sharing).
   
-  * **Detection method**: Choose your preferred detection method:
-    * **Image upload**: Toggle "Using real-time camera" off to upload a picture and detect masks in it.
-    * **Real-time camera**: Toggle "Using real-time camera" on to activate mask detection from your webcam.
+  * **🖼️ Detection methods**: Choose your preferred detection method:
+    * **Image upload**: Upload an image to detect mask.
+    * **Real-time camera**: Use your webcam for live mask detection.
