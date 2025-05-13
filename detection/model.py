@@ -5,7 +5,7 @@ def getModel(weightsPath='yolov8n.pt'):
 
 
 def trainModel(model, numEpochs, resume=False):
-    results = model.train(data="data.yaml", epochs=numEpochs, imgsz=480, resume=resume)
+    results = model.train(data="data.yaml", epochs=numEpochs, imgsz=640, resume=resume)
     return results
 
 
