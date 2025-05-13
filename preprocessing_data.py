@@ -20,7 +20,7 @@ names:
     1: with_mask
     2: mask_weared_incorrect"""
 
-    with open("data.yaml", 'w') as file:
+    with open("detection/data.yaml", 'w') as file:
         file.write(yaml_text)
     
 
