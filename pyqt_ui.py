@@ -7,7 +7,7 @@ from PyQt6.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton, QLa
 from PyQt6.QtCore import Qt, QThread, pyqtSignal, pyqtSlot
 from PyQt6.QtGui import QImage, QPixmap
 from detection.model import getModel, getPrediction
-from detection.utils import drawBoxes, getCTime
+from detection.utils import drawBoxes, getMTime
 
 
 # Stacked Widget Base Class
@@ -31,8 +31,11 @@ class BaseWidget(QWidget):
         _ = self.model(dummy, verbose=False)
     
     def predictImg(self, img):
+        # convert RGB to BGR
+        img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
         prediction = getPrediction(self.model, img)
-        predictedImg = drawBoxes(img, bndboxes=prediction, withConfScore=True, isRgb=True)
+        predictedImg = drawBoxes(img, bndboxes=prediction, withConfScore=True, isRgb=False)
+        predictedImg = cv2.cvtColor(predictedImg, cv2.COLOR_BGR2RGB)
         return predictedImg
     
     @pyqtSlot(np.ndarray)
@@ -62,8 +65,9 @@ class ImageWidget(BaseWidget):
 
     def browse(self):
         fileName, _ = QFileDialog.getOpenFileName(self, "Open Image", "", "Images (*.png *.jpg *.jpeg *.bmp)")
-        img = cv2.imread(fileName)
-        self.showPrediction(img)
+        if fileName:
+            img = cv2.imread(fileName)
+            self.showPrediction(img)
     
     def showPrediction(self, img):
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
@@ -161,7 +165,7 @@ class MainWindow(QMainWindow):
         for index in range(self.stack.count()):
                 self.stack.widget(index).setModelWeight(self.modelPretrainedWeight)
         self.weightLabel.setText(f"Pretrained Weights: {self.modelPretrainedWeight}\
-                                    \nTime: {getCTime(self.modelPretrainedWeight)}")
+                                    \nTime: {getMTime(self.modelPretrainedWeight)}")
         
     def uploadWeight(self):
         while True:

@@ -8,6 +8,9 @@ from . import config
 
 def getCTime(filepath):
     return time.ctime(os.path.getctime(filepath))
+
+def getMTime(filepath): 
+    return time.ctime(os.path.getmtime(filepath))
     
 
 def xml2YoloBox(bndbox, width, height):
