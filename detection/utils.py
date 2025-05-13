@@ -2,8 +2,13 @@ import matplotlib.pyplot as plt
 import shutil
 import cv2
 import os
+import time
 from . import config
 
+
+def getCTime(filepath):
+    return time.ctime(os.path.getctime(filepath))
+    
 
 def xml2YoloBox(bndbox, width, height):
     """Convert xml bounding box to YOLO bounding box.
